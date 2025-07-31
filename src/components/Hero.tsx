@@ -16,7 +16,22 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-      <div className="relative container mx-auto px-4 py-20">
+      {/* Banner Image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 z-0"
+      >
+        <img
+          src="/banner_001.jpg"
+          alt="Raunaimer Advocacia - Especialistas em Direito Condominial"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+      </motion.div>
+      
+      <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Title */}
           <motion.div
@@ -25,13 +40,13 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-gray-900 mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white mb-6">
               Especialistas em{' '}
               <span className="bg-gradient-to-r from-raunaimer-gold to-yellow-400 bg-clip-text text-transparent">
                 Direito Condominial
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto">
               Sua jornada para soluções jurídicas condominiais começa aqui
             </p>
           </motion.div>
@@ -112,7 +127,7 @@ const StatCounter: React.FC<StatCounterProps> = ({ end, suffix, label, delay }) 
       <div className="text-3xl md:text-4xl font-bold text-raunaimer-gold mb-2">
         {count}
       </div>
-      <div className="text-sm text-gray-600 font-medium">
+      <div className="text-sm text-white/80 font-medium">
         {label}
       </div>
     </motion.div>
