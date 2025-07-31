@@ -1,5 +1,5 @@
 import React from 'react'
-import { features } from '@/data'
+
 import { motion } from 'framer-motion'
 import { 
   Heart, 

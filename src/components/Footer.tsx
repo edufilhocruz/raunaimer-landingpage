@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { companyConfig } from '@/data'
+
 import { MapPin, Clock, Mail, Phone } from 'lucide-react'
 
 export const Footer: React.FC = () => {
