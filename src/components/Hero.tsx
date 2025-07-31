@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
             </button>
             <button
               onClick={handleLearnMoreClick}
-              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold text-lg hover:border-raunaimer-gold hover:text-raunaimer-gold transition-all duration-300"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300"
             >
               Saiba Mais
             </button>
@@ -81,7 +81,7 @@ export const Hero: React.FC = () => {
             className="grid grid-cols-3 gap-8 max-w-2xl mx-auto"
           >
             <StatCounter 
-              end={500} 
+              end={100} 
               suffix="+" 
               label="Condomínios Atendidos" 
               delay={0.6}
