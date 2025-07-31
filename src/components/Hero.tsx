@@ -3,6 +3,8 @@ import { Button } from '@/components/ui/button'
 import { stats } from '@/data'
 import { smoothScrollTo } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+import { useCounter } from '@/hooks/useCounter'
 
 export const Hero: React.FC = () => {
   const handleCTAClick = () => {
@@ -14,112 +16,106 @@ export const Hero: React.FC = () => {
   }
 
   return (
-    <section className="pt-24 pb-16 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
+    <section className="relative min-h-screen bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+      <div className="relative container mx-auto px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Main Title */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="mb-8"
           >
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Gestão Completa para{' '}
-              <span className="gradient-text">Condomínios</span>
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-gray-900 mb-6">
+              Especialistas em{' '}
+              <span className="bg-gradient-to-r from-raunaimer-gold to-yellow-400 bg-clip-text text-transparent">
+                Direito Condominial
+              </span>
             </h1>
-            
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Automatize cobranças, controle inadimplência e gerencie moradores com o sistema mais completo do mercado. 
-              Reduza a inadimplência em até 80% e economize horas de trabalho administrativo.
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              Sua jornada para soluções jurídicas condominiais começa aqui
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                variant="gradient"
-                onClick={handleCTAClick}
-                className="text-lg px-8 py-4"
-              >
-                Solicitar Demonstração
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={handleLearnMoreClick}
-                className="text-lg px-8 py-4"
-              >
-                Conhecer Recursos
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
-          {/* Image */}
+          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
-            <div className="relative">
-              {/* Placeholder para imagem do dashboard */}
-              <div className="w-full h-96 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 rounded-2xl"></div>
-                <div className="absolute inset-4 bg-white rounded-xl shadow-lg">
-                  <div className="p-6">
-                    <div className="flex items-center space-x-2 mb-4">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                      <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-                      <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                    </div>
-                    <div className="mt-6 grid grid-cols-2 gap-4">
-                      <div className="h-20 bg-blue-100 rounded-lg"></div>
-                      <div className="h-20 bg-purple-100 rounded-lg"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 w-16 h-16 bg-green-500 rounded-full opacity-20"
-              />
-              <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-500 rounded-full opacity-20"
-              />
-            </div>
+            <button
+              onClick={handleCTAClick}
+              className="bg-gradient-to-r from-raunaimer-gold to-yellow-400 text-raunaimer-dark px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2"
+            >
+              <span>Fale Conosco</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleLearnMoreClick}
+              className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold text-lg hover:border-raunaimer-gold hover:text-raunaimer-gold transition-all duration-300"
+            >
+              Saiba Mais
+            </button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+          >
+            <StatCounter 
+              end={500} 
+              suffix="+" 
+              label="Condomínios Atendidos" 
+              delay={0.6}
+            />
+            <StatCounter 
+              end={80} 
+              suffix="%" 
+              label="Redução na Inadimplência" 
+              delay={0.8}
+            />
+            <StatCounter 
+              end={24} 
+              suffix="/7" 
+              label="Suporte Disponível" 
+              delay={1.0}
+            />
           </motion.div>
         </div>
       </div>
     </section>
+  )
+}
+
+// Componente para estatística com contador animado
+interface StatCounterProps {
+  end: number
+  suffix: string
+  label: string
+  delay: number
+}
+
+const StatCounter: React.FC<StatCounterProps> = ({ end, suffix, label, delay }) => {
+  const { count, ref } = useCounter({ end, suffix, duration: 2000 })
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
+      className="text-center"
+    >
+      <div className="text-3xl md:text-4xl font-bold text-raunaimer-gold mb-2">
+        {count}
+      </div>
+      <div className="text-sm text-gray-600 font-medium">
+        {label}
+      </div>
+    </motion.div>
   )
 } 

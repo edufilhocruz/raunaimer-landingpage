@@ -12,6 +12,9 @@ const contactFormSchema = z.object({
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
   phone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
+  contactType: z.enum(['syndic', 'condominium', 'administrator'], {
+    errorMap: () => ({ message: 'Selecione uma opção' }),
+  }),
   company: z.string().optional(),
   units: z.string().optional(),
   message: z.string().optional(),
@@ -29,6 +32,7 @@ export const useContactForm = () => {
       name: '',
       email: '',
       phone: '',
+      contactType: undefined,
       company: '',
       units: '',
       message: '',
@@ -87,11 +91,18 @@ export const useContactForm = () => {
   }
 
   const formatWhatsAppMessage = (data: ContactFormSchema): string => {
+    const contactTypeLabels = {
+      syndic: 'Síndico',
+      condominium: 'Condomínio',
+      administrator: 'Administrador'
+    }
+    
     return `Olá! Recebi uma nova solicitação do site:
 
 *Nome:* ${data.name}
 *Email:* ${data.email}
 *Telefone:* ${data.phone}
+*Tipo:* ${contactTypeLabels[data.contactType]}
 ${data.company ? `*Empresa:* ${data.company}` : ''}
 ${data.units ? `*Unidades:* ${data.units}` : ''}
 ${data.message ? `*Mensagem:* ${data.message}` : ''}
@@ -100,11 +111,18 @@ Gostaria de saber mais sobre o Sistema Raunaimer.`
   }
 
   const formatEmailMessage = (data: ContactFormSchema): string => {
+    const contactTypeLabels = {
+      syndic: 'Síndico',
+      condominium: 'Condomínio',
+      administrator: 'Administrador'
+    }
+    
     return `Nova solicitação recebida do site:
 
 Nome: ${data.name}
 Email: ${data.email}
 Telefone: ${data.phone}
+Tipo: ${contactTypeLabels[data.contactType]}
 ${data.company ? `Empresa: ${data.company}` : ''}
 ${data.units ? `Unidades: ${data.units}` : ''}
 ${data.message ? `Mensagem: ${data.message}` : ''}

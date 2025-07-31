@@ -2,10 +2,6 @@ import { Feature, PricingPlan, Stat, ContactInfo, NavItem } from '@/types'
 
 // Dados de navegação
 export const navigationItems: NavItem[] = [
-  { label: 'Recursos', href: '#recursos' },
-  { label: 'Preços', href: '#precos' },
-  { label: 'Contato', href: '#contato' },
-  { label: 'Acessar Sistema', href: 'https://app.raunaimer.adv.br', external: true },
 ]
 
 // Dados de estatísticas

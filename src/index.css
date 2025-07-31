@@ -26,6 +26,13 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
+    
+    /* Cores personalizadas baseadas nas imagens */
+    --raunaimer-dark: 220 13% 18%; /* Preto/azul escuro do header */
+    --raunaimer-gold: 45 100% 51%; /* Dourado do logo */
+    --raunaimer-blue: 210 100% 50%; /* Azul dos ícones */
+    --raunaimer-gray: 220 13% 25%; /* Cinza escuro das seções */
+    --raunaimer-white: 0 0% 100%; /* Branco dos textos */
   }
 
   .dark {
@@ -62,23 +69,61 @@
 }
 
 @layer components {
+  /* Gradientes focados em conversão */
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-raunaimer-gold to-yellow-400 bg-clip-text text-transparent;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600;
+    @apply bg-gradient-to-r from-raunaimer-dark to-slate-800;
   }
   
+  .gradient-cta {
+    @apply bg-gradient-to-r from-raunaimer-gold to-yellow-400;
+  }
+  
+  /* Cards com hover para conversão */
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105 cursor-pointer;
   }
   
+  /* Botões focados em conversão */
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply bg-gradient-to-r from-raunaimer-gold to-yellow-400 text-raunaimer-dark px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:scale-105 transform;
+  }
+  
+  .btn-secondary {
+    @apply bg-raunaimer-dark text-raunaimer-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:scale-105 transform;
   }
   
   .btn-outline {
-    @apply border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-600 hover:text-white;
+    @apply border-2 border-raunaimer-gold text-raunaimer-gold px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-raunaimer-gold hover:text-raunaimer-dark hover:shadow-2xl hover:-translate-y-1;
+  }
+  
+  /* Seções com fundo escuro */
+  .section-dark {
+    @apply bg-raunaimer-dark text-raunaimer-white;
+  }
+  
+  .section-gray {
+    @apply bg-raunaimer-gray text-raunaimer-white;
+  }
+  
+  /* Elementos de destaque */
+  .highlight-gold {
+    @apply text-raunaimer-gold font-bold;
+  }
+  
+  .highlight-blue {
+    @apply text-raunaimer-blue font-bold;
+  }
+  
+  /* Animações para conversão */
+  .pulse-cta {
+    @apply animate-pulse hover:animate-none;
+  }
+  
+  .bounce-cta {
+    @apply hover:animate-bounce;
   }
 } 

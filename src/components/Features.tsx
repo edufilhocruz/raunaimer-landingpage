@@ -2,22 +2,26 @@ import React from 'react'
 import { features } from '@/data'
 import { motion } from 'framer-motion'
 import { 
-  Star, 
-  CheckCircle, 
-  Users, 
-  FileText, 
+  Heart, 
+  Building, 
+  Eye, 
   Shield, 
-  Bell 
-} from 'lucide-react'
-
-// Mapeamento de ícones
-const iconMap = {
-  Star,
-  CheckCircle,
   Users,
   FileText,
+  ArrowUpRight,
+  UserCheck
+} from 'lucide-react'
+
+// Mapeamento de ícones baseado nas imagens
+const iconMap = {
+  Heart,
+  Building,
+  Eye,
   Shield,
-  Bell,
+  Users,
+  FileText,
+  ArrowUpRight,
+  UserCheck,
 }
 
 export const Features: React.FC = () => {
@@ -32,40 +36,64 @@ export const Features: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Recursos Principais
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Soluções Jurídicas{' '}
+            <span className="bg-gradient-to-r from-raunaimer-gold to-yellow-400 bg-clip-text text-transparent">
+              Completas
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Tudo que você precisa para gerenciar seu condomínio de forma eficiente e profissional
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Rastreie cada questão condominial e interação para refinar estratégias de resolução
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = iconMap[feature.icon as keyof typeof iconMap]
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+          {[
+            {
+              icon: 'Shield',
+              title: 'Proteção Legal',
+              description: 'Defesa completa do condomínio em ações judiciais e administrativas'
+            },
+            {
+              icon: 'Eye',
+              title: 'Monitoramento',
+              description: 'Acompanhamento contínuo de processos e prazos legais'
+            },
+            {
+              icon: 'ArrowUpRight',
+              title: 'Elaboração de Multas',
+              description: 'Processo completo de aplicação de penalidades conforme legislação'
+            },
+            {
+              icon: 'UserCheck',
+              title: 'Análise de Contratos',
+              description: 'Proteção legal para seu condomínio com revisão especializada'
+            }
+          ].map((service, index) => {
+            const IconComponent = iconMap[service.icon as keyof typeof iconMap]
             
             return (
               <motion.div
-                key={feature.id}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="group"
               >
-                <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-raunaimer-gold transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                   {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-r from-raunaimer-gold to-yellow-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
 
                   {/* Content */}
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    {feature.title}
+                    {service.title}
                   </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
+                    {service.description}
                   </p>
                 </div>
               </motion.div>
@@ -73,32 +101,105 @@ export const Features: React.FC = () => {
           })}
         </div>
 
-        {/* CTA Section */}
+        {/* Description Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-12 text-center mb-20"
         >
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Pronto para começar?
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Junte-se a centenas de administradores que já transformaram a gestão de seus condomínios
-            </p>
-            <button
-              onClick={() => {
-                const element = document.getElementById('contato')
-                element?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-            >
-              Solicitar Demonstração Gratuita
-            </button>
-          </div>
+          <p className="text-2xl text-gray-800 leading-relaxed max-w-4xl mx-auto">
+            Síndico, nós sabemos que administrar um condomínio não é fácil, por isso estamos aqui, prontos a te auxiliar em todas as questões que envolvem o condomínio, desde{' '}
+            <span className="font-bold text-raunaimer-gold">uma briga de vizinhos</span> até{' '}
+            <span className="font-bold text-raunaimer-gold">uma ação trabalhista</span>.
+          </p>
         </motion.div>
+
+        {/* Services Offered Section */}
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* Left Column */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-3xl font-bold text-gray-900 mb-8">
+              O que oferecemos aos nossos Clientes
+            </h3>
+            
+            <div className="space-y-6">
+              {[
+                {
+                  icon: 'Heart',
+                  title: 'Orientação ao Síndico',
+                  description: 'Orientação completa ao corpo diretivo condominial'
+                },
+                {
+                  icon: 'Building',
+                  title: 'Gestão Administrativa',
+                  description: 'Suporte na gestão administrativa e legal do condomínio'
+                },
+                {
+                  icon: 'Eye',
+                  title: 'Compliance Legal',
+                  description: 'Garantia de conformidade com todas as normas legais aplicáveis'
+                },
+                {
+                  icon: 'Shield',
+                  title: 'Defesas e Ações',
+                  description: 'Defesa de ações que o condomínio figure no polo.'
+                }
+              ].map((service, index) => {
+                const IconComponent = iconMap[service.icon as keyof typeof iconMap]
+                
+                return (
+                  <div key={index} className="flex items-start space-x-4 group">
+                    <div className="w-12 h-12 bg-gradient-to-r from-raunaimer-gold to-yellow-400 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">
+                        {service.title}
+                      </h4>
+                      <p className="text-gray-600">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </motion.div>
+
+          {/* Right Column - CTA */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center"
+          >
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                Precisa de ajuda com seu condomínio?
+              </h3>
+              <p className="text-gray-600 mb-8 max-w-md">
+                Entre em contato conosco e descubra como podemos ajudar a resolver os problemas do seu condomínio
+              </p>
+              <button
+                onClick={() => {
+                  const element = document.getElementById('contato')
+                  element?.scrollIntoView({ behavior: 'smooth' })
+                }}
+                className="bg-gradient-to-r from-raunaimer-gold to-yellow-400 text-raunaimer-dark px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                Fale Conosco Agora
+              </button>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

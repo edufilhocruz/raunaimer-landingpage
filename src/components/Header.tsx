@@ -29,56 +29,61 @@ export const Header: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-white/90 backdrop-blur-sm'
+          ? 'bg-raunaimer-dark/95 backdrop-blur-md shadow-xl'
+          : 'bg-raunaimer-dark'
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container px-4 mx-auto">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">R</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900">Raunaimer</span>
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/logotipo.png" 
+              alt="Raunaimer Monfre Advocacia" 
+              className="w-auto h-24"
+            />
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navigationItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.href, item.external)}
-                className="text-gray-600 hover:text-blue-600 transition-colors font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-600" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-600" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 bg-white">
-            <nav className="flex flex-col space-y-4 py-4">
+          {/* Desktop Navigation - Only show if there are items */}
+          {navigationItems.length > 0 && (
+            <nav className="items-center hidden space-x-8 md:flex">
               {navigationItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.href, item.external)}
-                  className="text-left px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors font-medium"
+                  className="font-medium transition-colors text-raunaimer-white hover:text-raunaimer-gold"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+          )}
+
+          {/* Mobile Menu Button - Only show if there are items */}
+          {navigationItems.length > 0 && (
+            <button
+              className="p-2 md:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-raunaimer-white" />
+              ) : (
+                <Menu className="w-6 h-6 text-raunaimer-white" />
+              )}
+            </button>
+          )}
+        </div>
+
+        {/* Mobile Menu - Only show if there are items */}
+        {navigationItems.length > 0 && isMobileMenuOpen && (
+          <div className="border-t md:hidden border-raunaimer-gray bg-raunaimer-dark">
+            <nav className="flex flex-col py-4 space-y-4">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => handleNavClick(item.href, item.external)}
+                  className="px-4 py-2 font-medium text-left transition-colors text-raunaimer-white hover:text-raunaimer-gold hover:bg-raunaimer-gray"
                 >
                   {item.label}
                 </button>

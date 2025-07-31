@@ -40,6 +40,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Cores personalizadas do Raunaimer
+        raunaimer: {
+          dark: "hsl(var(--raunaimer-dark))",
+          gold: "hsl(var(--raunaimer-gold))",
+          blue: "hsl(var(--raunaimer-blue))",
+          gray: "hsl(var(--raunaimer-gray))",
+          white: "hsl(var(--raunaimer-white))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -53,6 +61,8 @@ export default {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.5s ease-out",
         "scale-in": "scaleIn 0.3s ease-out",
+        "pulse-cta": "pulse 2s infinite",
+        "bounce-cta": "bounce 1s infinite",
       },
       keyframes: {
         fadeIn: {

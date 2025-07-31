@@ -3,8 +3,8 @@ import { Toaster } from '@/components/ui/toaster'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Features } from '@/components/Features'
-import { Pricing } from '@/components/Pricing'
-import { CTA } from '@/components/CTA'
+import { DireitoCondominial } from '@/components/DireitoCondominial'
+
 import { Contact } from '@/components/Contact'
 import { Footer } from '@/components/Footer'
 import { useToast } from '@/hooks/useToast'
@@ -36,24 +36,15 @@ function App() {
       page: 'landing-page',
       title: document.title,
     })
-
-    // Mostrar toast de boas-vindas (opcional)
-    setTimeout(() => {
-      showInfo(
-        'Bem-vindo ao Sistema Raunaimer!',
-        'Descubra como podemos ajudar seu condomínio.'
-      )
-    }, 2000)
   }, [showInfo])
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <main className="pt-16">
         <Hero />
         <Features />
-        <Pricing />
-        <CTA />
+        <DireitoCondominial />
         <Contact />
       </main>
       <Footer />
