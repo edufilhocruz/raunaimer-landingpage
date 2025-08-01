@@ -1,10 +1,13 @@
-# 🏢 Raunaimer Monfre Advocacia
+# 🏢 Raunaimer Monfre Advocacia - Landing Page
 
 Landing page profissional para o escritório de advocacia **Raunaimer Monfre**, especializado em **Direito Condominial**.
 
 ## 📋 Sobre o Projeto
 
 Site institucional moderno e responsivo desenvolvido para apresentar os serviços jurídicos especializados em questões condominiais, com foco em conversão e credibilidade profissional.
+
+**Domínio:** `raunaimer.adv.br` (Landing page de vendas)
+**Sistema:** `app.raunaimer.adv.br` (Aplicação principal)
 
 ## ✨ Principais Funcionalidades
 
@@ -66,6 +69,12 @@ Para que o formulário de contato funcione corretamente, configure o EmailJS:
    ```
 
 ## 🌐 Deploy no Domínio
+
+### 📍 Estrutura de Domínios
+- **`raunaimer.adv.br`** - Landing page de vendas (este projeto)
+- **`app.raunaimer.adv.br`** - Sistema Raunaimer (aplicação principal)
+
+### 🚀 Deploy da Landing Page
 
 Para publicar no domínio `raunaimer.adv.br`:
 

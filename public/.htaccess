@@ -1,5 +1,7 @@
-# Configurações para Raunaimer Monfre Advocacia
+# Configurações para Raunaimer Monfre Advocacia - Landing Page
 # Arquivo .htaccess para Apache
+# Domínio: raunaimer.adv.br (Landing page de vendas)
+# Sistema: app.raunaimer.adv.br (Aplicação principal)
 
 # Habilitar compressão
 <IfModule mod_deflate.c>

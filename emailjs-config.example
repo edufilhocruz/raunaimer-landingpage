@@ -1,4 +1,7 @@
-# EmailJS Configuration
+# EmailJS Configuration para Raunaimer Monfre Advocacia
+# Domínio: raunaimer.adv.br (Landing page de vendas)
+# Sistema: app.raunaimer.adv.br (Aplicação principal)
+
 # Obtenha essas chaves em: https://www.emailjs.com/
 VITE_EMAILJS_SERVICE_ID=your_service_id
 VITE_EMAILJS_TEMPLATE_ID=your_template_id
