@@ -76,12 +76,41 @@ Para que o formulário de contato funcione corretamente, configure o EmailJS:
 
 ### 🚀 Deploy da Landing Page
 
-Para publicar no domínio `raunaimer.adv.br`:
+#### **VPS Configurada (Recomendado)**
+A landing page está configurada para deploy na VPS existente:
 
-1. **Configure o DNS** para apontar para o servidor de deploy
-2. **Configure o servidor web** (Apache/Nginx) para servir os arquivos estáticos
-3. **Configure HTTPS** para segurança
-4. **Configure redirecionamentos** se necessário
+- **VPS:** 191.252.111.245
+- **Servidor:** Nginx
+- **Document Root:** `/var/www/html`
+- **Sistema:** `/var/www/sistema_raunaimer` (app.raunaimer.adv.br)
+
+#### **Deploy Automatizado**
+```bash
+# Executar deploy automatizado
+./deploy-vps.sh
+```
+
+#### **Deploy Manual**
+Para deploy manual no domínio `raunaimer.adv.br`:
+
+1. **Build do projeto:**
+   ```bash
+   npm run build
+   ```
+
+2. **Upload para VPS:**
+   ```bash
+   scp -r dist/* root@191.252.111.245:/var/www/html/
+   scp nginx-config.conf root@191.252.111.245:/etc/nginx/sites-available/raunaimer-landing
+   ```
+
+3. **Configurar Nginx:**
+   ```bash
+   ssh root@191.252.111.245
+   ln -s /etc/nginx/sites-available/raunaimer-landing /etc/nginx/sites-enabled/
+   nginx -t
+   systemctl reload nginx
+   ```
 
 ### 📦 Build para Produção
 ```bash
