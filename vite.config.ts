@@ -16,13 +16,22 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false, // Desabilitar sourcemaps em produção
+    minify: 'terser',
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast', '@radix-ui/react-select'],
+          animations: ['framer-motion'],
+          forms: ['react-hook-form', '@hookform/resolvers', 'zod'],
         },
+      },
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true, // Remove console.log em produção
+        drop_debugger: true,
       },
     },
   },

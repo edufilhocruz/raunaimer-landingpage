@@ -5,13 +5,19 @@ import { z } from 'zod'
 
 import { useToast } from '@/hooks/useToast'
 import { contactService } from '@/services/contactService'
-import { generateWhatsAppLink, generateEmailLink } from '@/lib/utils'
+import { emailService } from '@/services/emailService'
+import { generateWhatsAppLink, formatPhone } from '@/lib/utils'
 
 // Schema de validação do formulário
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
-  phone: z.string().min(10, 'Telefone deve ter pelo menos 10 dígitos'),
+  phone: z.string()
+    .min(14, 'Telefone deve ter pelo menos 10 dígitos')
+    .refine((value) => {
+      const cleaned = value.replace(/\D/g, '')
+      return cleaned.length >= 10 && cleaned.length <= 11
+    }, 'Telefone inválido'),
   contactType: z.enum(['syndic', 'condominium', 'administrator'], {
     errorMap: () => ({ message: 'Selecione uma opção' }),
   }),
@@ -43,8 +49,14 @@ export const useContactForm = () => {
     setIsSubmitting(true)
     
     try {
+      // Formatar telefone antes de enviar
+      const formattedData = {
+        ...data,
+        phone: formatPhone(data.phone)
+      }
+      
       // Enviar dados para a API
-      await contactService.submitContact(data)
+      await contactService.submitContact(formattedData)
       
       // Mostrar toast de sucesso
       toast({
@@ -57,8 +69,8 @@ export const useContactForm = () => {
       form.reset()
 
       // Enviar para WhatsApp e Email
-      await sendToWhatsApp(data)
-      await sendToEmail(data)
+      await sendToWhatsApp(formattedData)
+      await sendEmail(formattedData)
 
     } catch (error) {
       console.error('Erro ao enviar formulário:', error)
@@ -81,13 +93,20 @@ export const useContactForm = () => {
     window.open(whatsappLink, '_blank')
   }
 
-  const sendToEmail = async (data: ContactFormSchema) => {
-    const subject = 'Nova solicitação - Sistema Raunaimer'
-    const body = formatEmailMessage(data)
-    const emailLink = generateEmailLink('contato@raunaimer.adv.br', subject, body)
-    
-    // Abrir cliente de email
-    window.open(emailLink, '_blank')
+  const sendEmail = async (data: ContactFormSchema) => {
+    try {
+      // Tentar enviar via EmailJS
+      const result = await emailService.sendEmail(data)
+      
+      if (!result.success) {
+        // Se falhar, usar fallback
+        emailService.sendEmailFallback(data)
+      }
+    } catch (error) {
+      console.error('Erro ao enviar email:', error)
+      // Usar fallback em caso de erro
+      emailService.sendEmailFallback(data)
+    }
   }
 
   const formatWhatsAppMessage = (data: ContactFormSchema): string => {
@@ -110,26 +129,7 @@ ${data.message ? `*Mensagem:* ${data.message}` : ''}
 Gostaria de saber mais sobre o Sistema Raunaimer.`
   }
 
-  const formatEmailMessage = (data: ContactFormSchema): string => {
-    const contactTypeLabels = {
-      syndic: 'Síndico',
-      condominium: 'Condomínio',
-      administrator: 'Administrador'
-    }
-    
-    return `Nova solicitação recebida do site:
 
-Nome: ${data.name}
-Email: ${data.email}
-Telefone: ${data.phone}
-Tipo: ${contactTypeLabels[data.contactType]}
-${data.company ? `Empresa: ${data.company}` : ''}
-${data.units ? `Unidades: ${data.units}` : ''}
-${data.message ? `Mensagem: ${data.message}` : ''}
-
----
-Enviado automaticamente pelo sistema de contato.`
-  }
 
   return {
     form,

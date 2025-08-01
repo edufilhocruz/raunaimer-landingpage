@@ -43,6 +43,43 @@ npm run dev
 npm run build
 ```
 
+## 📧 Configuração do EmailJS
+
+Para que o formulário de contato funcione corretamente, configure o EmailJS:
+
+1. **Crie uma conta** em [EmailJS](https://www.emailjs.com/)
+2. **Configure um serviço de email** (Gmail, Outlook, etc.)
+3. **Crie um template** com as variáveis:
+   - `{{to_email}}` - Email de destino
+   - `{{from_name}}` - Nome do remetente
+   - `{{from_email}}` - Email do remetente
+   - `{{phone}}` - Telefone
+   - `{{contact_type}}` - Tipo de contato
+   - `{{company}}` - Empresa
+   - `{{units}}` - Unidades
+   - `{{message}}` - Mensagem
+4. **Copie as chaves** e crie um arquivo `.env`:
+   ```env
+   VITE_EMAILJS_SERVICE_ID=sua_service_id
+   VITE_EMAILJS_TEMPLATE_ID=sua_template_id
+   VITE_EMAILJS_PUBLIC_KEY=sua_public_key
+   ```
+
+## 🌐 Deploy no Domínio
+
+Para publicar no domínio `raunaimer.adv.br`:
+
+1. **Configure o DNS** para apontar para o servidor de deploy
+2. **Configure o servidor web** (Apache/Nginx) para servir os arquivos estáticos
+3. **Configure HTTPS** para segurança
+4. **Configure redirecionamentos** se necessário
+
+### 📦 Build para Produção
+```bash
+npm run build
+```
+Os arquivos serão gerados na pasta `dist/` para upload no servidor.
+
 ## 📞 Contato
 
 **Raunaimer Monfre Advocacia**

@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useContactForm } from '@/hooks/useContactForm'
+import { usePhoneFormat } from '@/hooks/usePhoneFormat'
 import { contactInfo } from '@/data'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -23,6 +24,7 @@ const iconMap = {
 
 export const Contact: React.FC = () => {
   const { form, isSubmitting, onSubmit } = useContactForm()
+  const { handlePhoneInput } = usePhoneFormat()
 
   return (
     <section id="contato" className="py-20 bg-gradient-to-br from-gray-50 to-white">
@@ -170,6 +172,8 @@ export const Contact: React.FC = () => {
                     type="tel"
                     {...form.register('phone')}
                     placeholder="(11) 99999-9999"
+                    onInput={handlePhoneInput}
+                    maxLength={15}
                     className={`border-gray-300 focus:border-raunaimer-gold focus:ring-raunaimer-gold ${
                       form.formState.errors.phone ? 'border-red-500' : ''
                     }`}

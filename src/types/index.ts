@@ -3,6 +3,7 @@ export interface ContactFormData {
   name: string;
   email: string;
   phone: string;
+  contactType: 'syndic' | 'condominium' | 'administrator';
   company?: string;
   units?: string;
   message?: string;

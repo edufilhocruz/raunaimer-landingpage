@@ -9,11 +9,15 @@ import { Contact } from '@/components/Contact'
 import { Footer } from '@/components/Footer'
 import { useToast } from '@/hooks/useToast'
 import { contactService } from '@/services/contactService'
+import { emailService } from '@/services/emailService'
 
 function App() {
   const { showInfo } = useToast()
 
   useEffect(() => {
+    // Inicializar EmailJS
+    emailService.init()
+
     // Inicializar AOS (Animate On Scroll)
     const initAOS = async () => {
       try {

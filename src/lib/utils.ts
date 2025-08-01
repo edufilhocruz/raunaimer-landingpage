@@ -24,10 +24,18 @@ export function formatCurrency(value: number): string {
  */
 export function formatPhone(phone: string): string {
   const cleaned = phone.replace(/\D/g, '')
-  const match = cleaned.match(/^(\d{2})(\d{4,5})(\d{4})$/)
-  if (match) {
-    return `(${match[1]}) ${match[2]}-${match[3]}`
+  
+  // Formato: (11) 99999-9999 (celular com 9)
+  if (cleaned.length === 11) {
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`
   }
+  
+  // Formato: (11) 9999-9999 (telefone fixo ou celular antigo)
+  if (cleaned.length === 10) {
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6)}`
+  }
+  
+  // Se não conseguir formatar, retorna o original
   return phone
 }
 
